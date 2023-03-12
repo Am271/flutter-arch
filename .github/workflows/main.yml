@@ -13,5 +13,5 @@ jobs:
       - name: Download and flutter
         run: |
           chmod +x setup.sh
-          ./setup.sh -c '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:' -n 'any' -a '${{ runner.arch }}' stable
+          ./setup.sh -p -n 'any' -a '${{ runner.arch }}' stable
         shell: bash
