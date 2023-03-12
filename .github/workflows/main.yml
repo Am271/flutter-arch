@@ -9,10 +9,12 @@ jobs:
   runnerx:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Display os runner name
         run: |
           OS_NAME=$(echo "$RUNNER_OS" | awk '{print tolower($0)}')
           MANIFEST_BASE_URL="https://storage.googleapis.com/flutter_infra_release/releases"
           MANIFEST_URL="$MANIFEST_BASE_URL/releases_$OS_NAME.json"
-          echo $MANIFEST_URL
+          chmod setup.sh
+          ./setup.sh -c '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:' -n 'any' -a '${{ runner.arch }}' stable
         shell: bash
